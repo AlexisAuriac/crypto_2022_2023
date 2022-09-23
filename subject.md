@@ -135,12 +135,12 @@ The screenshot is here: /ch3.jpg
 
 ### SYM2: Bite-flip
 
-Challenge to come!
+See flip1.geographer.fr ;-)
 
 
 ### SYM3: Bite-flip II
 
-Challenge to come!
+See flip2.geographer.fr ;-)
 
 
 ## RSA
