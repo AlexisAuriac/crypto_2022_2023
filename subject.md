@@ -66,7 +66,7 @@ During the final defense, you will be graded on:
 - Any scripts you submit as proof that you did the task (if it rezuired scripting)
 
 You should present a detailed write-up of all the exercises you did, starting with this one. You are
-free to use whichever medium you prefer: simple text file, a Teams chat, some slides, a PDF, a
+free to use whichever medium you prefer: simple text file, a Teams chat, some slides, a PDF, a 
 Jupyter notebook... But we should be able to download it to check it out later. You'll also present
 your writeup during the defense.
 
