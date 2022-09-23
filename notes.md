@@ -1,5 +1,7 @@
 # Step 1
 
+todo: make a script for it
+
 ### first try
 
 3 - ctlf.rpobakotiy.coo
@@ -29,6 +31,8 @@ don't need to find the key again, need to make script to decrypt though
 ## Basic
 
 ### Basic 2
+
+todo: make script
 
 data: 57656c6c20646f6e6520212054686520666c616720666f722074686973206368616c6c656e67652069732074686973206d6573736167652e
 base: hex https://www.convertstring.com/EncodeDecode/HexDecode
@@ -61,11 +65,15 @@ header is: riff (0x52494646 'RIFF') + file_size-8 + webp (0x57454250 'WEBP') + V
 
 ### Easy hashing
 
+todo: make script for it
+
 37f62f1363b04df4370753037853fe88
 https://hashes.com/en/decrypt/hash
 trololo
 
 ### Confessions
+
+todo: cleanup/improve current script
 
 Endpoint request logs:\
 ```
