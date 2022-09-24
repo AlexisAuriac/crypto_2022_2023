@@ -14,28 +14,33 @@ rail fence -> crypto.blackfoot.io
 
 rail fence -> crypt.geographer.fr
 
-# Step 2
+# Exercises
 
-curl https://crypto.geographer.fr/ > step2.txt
+## Basic 1
+
+url: https://crypto.geographer.fr/
 
 Encrypted with monoalphabetic substitution
 
+used https://www.dcode.fr/monoalphabetic-substitution to get key
+There were some errors that had to be corrected manually
+
      ABCDEFGHIJKLMNOPQRSTUVWXYZ
-     DPEJRFLMSNKIHUXZGQTVWCBAYO
 key: XWVACFQMLDKGHJZBREISNTUOYP
 
-don't need to find the key again, need to make script to decrypt though
+key doesn't change
 
-# Exercises
-
-## Basic
+use updateSubject.js to update the subject (downloads and decrypts automatically)
 
 ### Basic 2
 
-todo: make script
-
 data: 57656c6c20646f6e6520212054686520666c616720666f722074686973206368616c6c656e67652069732074686973206d6573736167652e
-base: hex https://www.convertstring.com/EncodeDecode/HexDecode
+
+```
+./basic2.py 57656c6c20646f6e6520212054686520666c616720666f722074686973206368616c6c656e67652069732074686973206d6573736167652e
+```
+
+web: hex https://www.convertstring.com/EncodeDecode/HexDecode
 flag: Well done ! The flag for this challenge is this message.
 
 ### Basic 3
@@ -79,3 +84,35 @@ Endpoint request logs:\
 ```
 https://confessions.geographer.fr/graphql?query={requestsLog%20{name,%20args,%20timestamp}}
 ```
+
+## Symmetric
+
+### Sym 1
+
+https://crypto.stackexchange.com/questions/76512/given-the-key-the-plain-text-and-the-cipher-text-can-i-calculate-the-iv-used-in
+NO BRUTEFORCE NEEDED
+
+### Sym 2
+
+http://flip1.geographer.fr/login -> send user and password to get cookie
+http://flip1.geographer.fr/flag -> can get flag if cookie says you are admin
+
+strat: flip 1 bit in cookie to change boolean and make admin\
+* get base cookie
+* make new cookie, try get flag, repeat
+
+format cookie:
+* base64 encoded
+* once decoded:
+	* part 1: iv (16 bytes)
+	* part 2: aes (64 bytes)
+
+strat 2: get iv and cipher text from cookie and guess the plain text, use that to get the key
+* get base cookie
+* get iv and cipher text
+* guess plain text
+* cipher = plain ^ key ^ iv <=> key = cipher ^ plain ^ iv
+* use key to make admin cookie and get flag
+
+https://ctftime.org/task/15305
+https://github.com/JeffersonDing/CTF/blob/master/pico_CTF_2021/web/more_cookies/ape.py
