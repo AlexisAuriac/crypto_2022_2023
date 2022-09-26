@@ -1,18 +1,15 @@
-# Step 1
-
-todo: make a script for it
-
-### first try
-
-3 - ctlf.rpobakotiy.coo
-
-rail fence -> crypto.blackfoot.io
-
-### second try
+# Get website
 
 3 - ctearrpogorpe.ry.ghf
 
-rail fence -> crypt.geographer.fr
+rail fence (3 rows) -> crypt.geographer.fr
+
+decode: https://www.dcode.fr/rail-fence-cipher
+	-> use 'Keep punctuation and spaces' option
+	-> rows: 3
+	-> offset: 0
+
+script: ```node railFence.js ctearrpogorpe.ry.ghf 3```
 
 # Exercises
 
@@ -73,6 +70,7 @@ header is: riff (0x52494646 'RIFF') + file_size-8 + webp (0x57454250 'WEBP') + V
 todo: make script for it
 
 37f62f1363b04df4370753037853fe88
+md5
 https://hashes.com/en/decrypt/hash
 trololo
 
