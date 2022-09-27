@@ -116,5 +116,3 @@ https://ctftime.org/task/15305
 https://github.com/JeffersonDing/CTF/blob/master/pico_CTF_2021/web/more_cookies/ape.py
 
 strat 1 was the right one but what needed to be flipped was the IV not the ciphertext
-
-todo: clean up sym2.py

