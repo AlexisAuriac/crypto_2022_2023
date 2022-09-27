@@ -95,7 +95,7 @@ NO BRUTEFORCE NEEDED
 http://flip1.geographer.fr/login -> send user and password to get cookie
 http://flip1.geographer.fr/flag -> can get flag if cookie says you are admin
 
-strat: flip 1 bit in cookie to change boolean and make admin\
+strat 1: flip 1 bit in cookie to change boolean and make admin\
 * get base cookie
 * make new cookie, try get flag, repeat
 
@@ -114,3 +114,7 @@ strat 2: get iv and cipher text from cookie and guess the plain text, use that t
 
 https://ctftime.org/task/15305
 https://github.com/JeffersonDing/CTF/blob/master/pico_CTF_2021/web/more_cookies/ape.py
+
+strat 1 was the right one but what needed to be flipped was the IV not the ciphertext
+
+todo: clean up sym2.py
