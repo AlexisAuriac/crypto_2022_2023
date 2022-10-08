@@ -7,7 +7,7 @@ import axios from 'axios'
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 
 const subjectUrl = 'https://crypto.geographer.fr'
-const key = 'XWVACFQMLDKGHJZBREISNTUOYP'.split('')
+const key = 'XWVACFZMLDKGHJQBREISNTUOYP'.split('')
 const subjectFile = './subject.md'
 
 async function downloadFile() {

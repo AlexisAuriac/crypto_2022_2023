@@ -63,7 +63,7 @@ During the final defense, you will be graded on:
 - How many challenges you've solved.
 - *How* you solved those challenges.
 - Your ability to explain your reasoning.
-- Any scripts you submit as proof that you did the task (if it rezuired scripting)
+- Any scripts you submit as proof that you did the task (if it required scripting)
 
 You should present a detailed write-up of all the exercises you did, starting with this one. You are
 free to use whichever medium you prefer: simple text file, a Teams chat, some slides, a PDF, a 
@@ -166,4 +166,4 @@ The IT department sent a message to a few employees, and we've intercepted it. W
 this potentially vital information - this IT department uses a homemade RSA implementation, this is
 our chance!
 
-/canudigit.qip
+/canudigit.zip

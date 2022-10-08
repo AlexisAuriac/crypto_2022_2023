@@ -23,7 +23,7 @@ used https://www.dcode.fr/monoalphabetic-substitution to get key
 There were some errors that had to be corrected manually
 
      ABCDEFGHIJKLMNOPQRSTUVWXYZ
-key: XWVACFQMLDKGHJZBREISNTUOYP
+key: XWVACFZMLDKGHJQBREISNTUOYP
 
 key doesn't change
 
