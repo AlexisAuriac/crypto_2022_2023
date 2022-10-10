@@ -90,6 +90,46 @@ https://confessions.geographer.fr/graphql?query={requestsLog%20{name,%20args,%20
 https://crypto.stackexchange.com/questions/76512/given-the-key-the-plain-text-and-the-cipher-text-can-i-calculate-the-iv-used-in
 NO BRUTEFORCE NEEDED
 
+AES ECB mode (block by block):
+```
+Encryption:
+CipherBlockN = Encryption(PlainBlockN, key)
+
+Decryption:
+PlainBlockN = Decryption(CipherBlockN, key)
+```
+
+AES CBC mode:
+```
+Encryption
+CipherBlockN = Encryption(PlainBlockN ^ PlainBlockN-1, key)
+and
+CipherBlock0 = Encryption(PlainBlock0 ^ iv, key)
+
+Decryption:
+PlainBlockN = Decryption(CipherBlockN, key) ^ CipherBlockN-1
+and
+PlainBlock0 = Decryption(CipherBlock0, key) ^ iv
+```
+
+We know PlainBlock0, key and CipherBlock1.
+
+We are searching for PlainBlock1, CipherBlock0 and iv.
+
+PlainBlock1 can be guessed from PlainBlock0.
+
+CipherText0:
+```
+    PlainBlock1 = Decryption(CipherBlock1, key) ^ CipherBlock0
+<=> CipherBlock0 = Decryption(CipherBlock1, key) ^ PlainBlock1
+```
+
+iv (same principle):
+```
+    PlainBlock0 = Decryption(CipherBlock0, key) ^ iv
+<=> iv = Decryption(CipherBlock0, key) ^ PlainBlock0
+```
+
 ### Sym 2
 
 http://flip1.geographer.fr/login -> send user and password to get cookie
