@@ -128,6 +128,8 @@ iv (same principle):
 <=> iv = Decryption(CipherBlock0, key) ^ PlainBlock0
 ```
 
+flag: h4ppyh4ppya5canB
+
 ### Sym 2
 
 http://flip1.geographer.fr/login -> send user and password to get cookie
@@ -155,6 +157,8 @@ https://github.com/JeffersonDing/CTF/blob/master/pico_CTF_2021/web/more_cookies/
 
 strat 1 was the right one but what needed to be flipped was the IV not the ciphertext
 
+flag: BFS{3ll3_S0n1_0u_lé_P1l_v1t3_v1t3_1_H4V_N33D5!}
+
 ### Sym 3
 
 Bit flipping: https://crypto.stackexchange.com/a/66086
@@ -163,6 +167,7 @@ possible solution: https://crypto.stackexchange.com/a/76249
 problem: need original plaintext + modified plain text
 
 solution: modify plain text v3
+flag: BFS{Tr0_F4ss1l_a3s_enc0r_D_C00ki}
 
 ##### Brute force
 
