@@ -156,3 +156,58 @@ https://ctftime.org/task/15305
 https://github.com/JeffersonDing/CTF/blob/master/pico_CTF_2021/web/more_cookies/ape.py
 
 strat 1 was the right one but what needed to be flipped was the IV not the ciphertext
+
+### Sym 3
+
+Bit flipping: https://crypto.stackexchange.com/a/66086
+
+possible solution: https://crypto.stackexchange.com/a/76249
+problem: need original plaintext + modified plain text
+
+solution: modify plain text v3
+
+##### Brute force
+
+ok to break block if contains username/password value, just needs to be utf-8
+
+probability random byte is valid utf-8:
+https://math.stackexchange.com/a/751707
+16 bytes:
+0.87739479563671 * 0.56471777839234 ** 16
+= 0.00009386386216848918
+= 9.39e-5
+= 1 / 10653
+
+##### modify plain text
+
+**if server doesn't actually require username/password**
+
+modify only first block
+
+v1:
+```{"password": "", "username": "aaaaaaaaaaaaaaaaaaaa", "admin": 0}```
+
+```{"admin":1,"a":0, "username": "aaaaaaaaaaaaaaaaaaaa", "admin": 0}```
+
+problem: json only takes last value
+```
+$ echo '{"a": 0, "a": 1}' | jq .
+{
+  "a": 1
+}
+```
+
+v2
+write admin on password field, cut other blocks
+```{"password": "", "username": "aaaaaaaaaaaaaaaaaaaa", "admin": 0}```
+into
+```{"admin": 1    }```
+
+v3 **SOLUTION**
+cut all blocks but admin
+second to last block as iv
+```{"password": "", "username": "aaaaaaaaaaaaaaaaaaaa", "admin": 0}```
+into
+```{"admin": 0}```
+then modify first block
+```{"admin": 1}```
