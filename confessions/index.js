@@ -6,45 +6,34 @@ const allowed_chars = [...new Array('~'.charCodeAt(0) - ' '.charCodeAt(0) + 1)].
 	return String.fromCodePoint(i + ' '.charCodeAt(0))
 })
 
-let logs = JSON.parse((await fs.readFile('logs.json')).toString()).data.requestsLog
+const logs = JSON.parse((await fs.readFile('logs.json')).toString()).data.requestsLog
 
-logs = logs.filter(({name}) => name !== 'addConfession').slice(0, 100)
+const hashes = logs
+	.filter(({name}) => name !== 'addConfession')
+	.map(log => JSON.parse(log.args).hash)
 
-logs = logs.map(log => {
-	const args = JSON.parse(log.args)
-	return {
-		hash: args.hash
-	}
-})
-
-const dictHashMsg = new Map()
-const dictMsgHash = new Map()
-
-function bruteForce(hash, known = '') {
+function bruteForce(hash, flag) {
 	for (let c of allowed_chars) {
-		const testHash = sha256(known + c)
+		const testHash = sha256(flag + c)
 
 		if (testHash === hash) {
-			return known + c
+			return flag + c
 		}
 	}
 
 	return null
 }
 
-let known = ''
+let flag = ''
 
-logs.forEach(req => {
-	const hash = req.hash
+for (let hash of hashes) {
+	flag = bruteForce(hash, flag)
 
-	const res = bruteForce(hash, known)
-
-	if (res !== null) {
-		req.msg = res
-		known = res
-	} else {
-		req.msg = null
-		console.log(known)
-		process.exit(0)
+	if (flag === null) {
+		console.log('Flag not found')
+		break
+	} else if (flag.match(/^BFS\{.+\}$/)) {
+		console.log(flag)
+		break
 	}
-})
+}

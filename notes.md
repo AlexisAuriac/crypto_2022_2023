@@ -76,8 +76,6 @@ trololo
 
 ### Confessions
 
-todo: cleanup/improve current script
-
 Endpoint request logs:\
 ```
 https://confessions.geographer.fr/graphql?query={requestsLog%20{name,%20args,%20timestamp}}
